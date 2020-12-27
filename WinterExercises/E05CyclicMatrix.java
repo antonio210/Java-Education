@@ -1,46 +1,60 @@
 package winterExercises;
 
+import java.util.Scanner;
+
 public class E05CyclicMatrix {
 
 	public static void main(String[] args) {
-		int size = 5;
+		
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Enter size of the matrix: ");
+		
+		int size=input.nextInt();
+		
 		int xz = size - 1;
 		int yz = size - 1;
 
-		int xa = 0;
-		int ya = 0;
-
-		int num = 1;
+		int xa = 0; int ya = 0;
+		
+		System.out.println("Enter starting number: ");
+		
+		int start=input.nextInt();
+		
+		input.close();
+		
+		int num = start;
 
 		int[][] table = new int[size][size];
 
-		while (num <= (size * size)) {
-			for (int i = yz; i >= ya; i--) {
+		while ((num-start) < (size * size)) {
+			for (int i = yz; i >= ya; i--) {   //bot right --> bot left
 				table[xz][i] = num++;
 			}
 			xz--;
 
-			for (int i = xz; i >= xa; i--) {
+			for (int i = xz; i >= xa; i--) {   //bot left --> top left
 				table[i][ya] = num++;
 			}
 			ya++;
 
-			for (int i = ya; i <= yz; i++) {
+			for (int i = ya; i <= yz; i++) {  //top left --> top right
 				table[xa][i] = num++;
 			}
 			xa++;
 
-			for (int i = xa; i <= xz; i++) {
+			for (int i = xa; i <= xz; i++) {  //top right --> bot right
 				table[i][yz] = num++;
 			}
 			yz--;
+
 		}
 
 		for (int i = 0; i < table.length; i++) {
 			for (int j = 0; j < table[i].length; j++) {
-				System.out.print((table[i][j] >= 10 ? table[i][j] : ("0" + table[i][j])) + " ");
+				System.out.format("%4d ",table[i][j]);
 			}
-			System.out.println();
+			System.out.println("\n");
 		}
 
 	}
