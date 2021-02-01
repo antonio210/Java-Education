@@ -7,6 +7,7 @@ public class P003 {
 		long num = 600851475143L;
 		long max = 0L;
 		int calc =0;
+		
 
 		for (int j = 2; j < (int)num / 2; j++) {
 			if (num % j == 0) {
